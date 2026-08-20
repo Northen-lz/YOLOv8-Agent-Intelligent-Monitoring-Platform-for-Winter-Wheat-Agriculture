@@ -11,7 +11,7 @@
 若 Qdrant/Neo4j 未启动，脚本会明确提示并安全退出。
 
 用法（需先启动 Qdrant + Neo4j）：
-    D:/pyhon/ana/ana3/python.exe examples/agriculture/seed_rag_graph.py
+    python scripts/seed_rag_graph.py
 """
 
 import glob

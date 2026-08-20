@@ -5,7 +5,7 @@ RAG 知识库种子脚本
 Qdrant 向量库（集合 agriculture_kb），供 AgricultureExpertAgent 的 rag 工具检索。
 
 用法（需先启动 Qdrant 服务，如 docker run -p 6333:6333 qdrant/qdrant）：
-    D:/pyhon/ana/ana3/python.exe examples/agriculture/seed_rag_knowledge.py
+    python scripts/seed_rag_knowledge.py
 
 若 Qdrant 未启动，脚本会给出明确提示并安全退出（不报错）。
 """

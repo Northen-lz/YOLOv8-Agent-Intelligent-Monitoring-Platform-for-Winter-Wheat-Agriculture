@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-第十章 14_weather_mcp_server —— 天气 MCP 服务器（用 MCPServer 封装）
+天气 MCP 服务器（用 MCPServer 封装）
 镜像参考 code/chapter10/14_weather_mcp_server.py。
 
 需联网（调用 wttr.in 天气 API）。
-作为 stdio 子进程运行：python examples/ch10/mcp/ch10_mcp_weather_server.py
+作为 stdio 子进程运行：python hello_agents/tools/agriculture/weather_mcp_server.py
 """
 import os
 import sys

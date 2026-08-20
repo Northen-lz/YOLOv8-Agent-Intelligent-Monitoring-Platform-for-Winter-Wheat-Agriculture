@@ -22,7 +22,7 @@ hello_agents/
 ├── knowledge/                    # 5 个领域知识文本（可编辑，已按论文补充作者与实验数据）
 ├── core/config.py                # 新增 NOTE_DIR / PROJECT_ROOT 等配置（env 可覆盖）
 ├── app.py                        # Gradio 类 Dify 对话界面（python -m hello_agents.app）
-└── examples/agriculture/         # 本目录：示例与验证脚本
+└── docs/agriculture-platform.md  # 本文件：平台构建与运行说明
 ```
 
 ## 识别门控（图片分流）
@@ -77,7 +77,7 @@ hello_agents/
 > 想启用 RAG 向量检索：先启动 Qdrant（`docker run -p 6333:6333 qdrant/qdrant`），再运行：
 
 ```bash
-python examples/agriculture/seed_rag_knowledge.py   # 把 knowledge/*.txt 灌入 agriculture_kb 集合
+python scripts/seed_rag_knowledge.py   # 把 knowledge/*.txt 灌入 agriculture_kb 集合
 ```
 
 > **RAG 已启用（2026-08-12）**：Docker 容器（qdrant/neo4j）已设 `--restart unless-stopped` 随 Docker Desktop 自动启动；
@@ -92,7 +92,7 @@ python examples/agriculture/seed_rag_knowledge.py   # 把 knowledge/*.txt 灌入
 > 4. **知识图谱 + 1-hop 检索**：`Neo4jGraphStore.find_memories_for_entities` 新增 `OPTIONAL MATCH (q)-[:RELATES]->(nb)` 邻居召回（邻居 0.5×基础分）；`seed_rag_graph.py` 灌入 46 段语义记忆 + 27 条本体三元组（388 实体/793 关系，全部取自 knowledge/*.txt 真实内容）。
 > 5. **MQE/HyDE 开关**：`Config.RAG_ENABLE_MQE/HYDE`（env 可覆盖），`rag` 工具单次调用仍可显式传 `enable_mqe/enable_hyde` 覆盖全局。
 >
-> 语义记忆与图谱种子脚本：`python examples/agriculture/seed_rag_graph.py`（需 Qdrant + Neo4j 均在 Docker 运行）。
+> 语义记忆与图谱种子脚本：`python scripts/seed_rag_graph.py`（需 Qdrant + Neo4j 均在 Docker 运行）。
 
 ## 通信协议启用（MCP，2026-08-13）
 
@@ -101,7 +101,7 @@ python examples/agriculture/seed_rag_knowledge.py   # 把 knowledge/*.txt 灌入
 | MCP 服务器 | 传输 | 展开工具 | 能力 |
 | --- | --- | --- | --- |
 | **农业自定义**（`hello_agents/tools/agriculture/agriculture_mcp_server.py`） | **Memory**（进程内，零外部依赖） | `agri_query_models` / `agri_query_eval` / `agri_query_data` / `agri_search_knowledge` / `agri_get_platform_info` | 把平台已有能力（`ExperimentAnalysisTool`/`AgricultureKnowledgeTool`）协议化，与实验/知识工具**数据同源** |
-| **天气**（复用 `examples/ch10/mcp/ch10_mcp_weather_server.py`） | **stdio**（子进程，wttr.in 联网） | `weather_get_weather_by_city(city)` | 城市实时天气/气温/湿度，对干旱防治/灌溉决策有真实价值 |
+| **天气**（`hello_agents/tools/agriculture/weather_mcp_server.py`） | **stdio**（子进程，wttr.in 联网） | `weather_get_weather_by_city(city)` | 城市实时天气/气温/湿度，对干旱防治/灌溉决策有真实价值 |
 
 **实现要点**：
 - `MCPTool` 新增可选 `server=` 参数（`hello_agents/tools/builtin/protocol_tools.py`）连进程内 FastMCP（Memory 传输），不传时行为不变（stdio/内置演示服务器）——ch10 回归无破坏
@@ -179,28 +179,12 @@ python -m pip install ultralytics onnxruntime python-docx reportlab gradio
 # LLM 需 .env 配置 DeepSeek（LLM_API_KEY / LLM_BASE_URL / LLM_MODEL_ID）
 ```
 
-## 手动重跑清单
+## 运行方式
 
-### ① 离线 Agent mock 测试（不碰模型/LLM）
-```bash
-python examples/agriculture/test_agents_mock.py
-# 期望: 97 通过 / 0 失败（含识别门控 / ImageInfoTool / 实验数据查询 /
-#                 标注图路径 / 会话存储(置顶/最近分组) / 累计统计 /
-#                 零外部服务工具注册与离线降级）
-```
+> 清理说明：原验证脚本（离线 mock 测试 / 真实集成 / HTTP 端到端 / ch10·ch12 回归）
+> 已随项目整理移除，历史版本保存在 git 中（`git log --diff-filter=D` 可回溯）。
 
-### ② 真实集成（真 YOLOv8 + 真 ONNX + 真 DeepSeek）
-```bash
-python examples/agriculture/run_integration.py
-# 期望:
-#  - WheatVisionAgent 检测出株数>0、平均置信度∈(0,1)、干旱率∈[0,1]
-#  - AgricultureExpertAgent ReAct 检索知识库后给出成体系回答
-#  - AnalysisAgent 输出综合评价
-#  - ReportAgent 落盘 md/docx/pdf 三文件
-#  - ManagerAgent 正确调度 author 子 Agent 回答"介绍开发者"
-```
-
-### ③ Gradio Web UI（类 Dify 对话界面）
+### ① 启动平台（类 Dify 对话界面）
 
 ```bash
 python -m hello_agents.app
@@ -212,19 +196,11 @@ python -m hello_agents.app
 # 纯文本消息 → 知识问答 / 综合评价 / 报告生成 / 作者介绍
 ```
 
-### ④ 真实 HTTP 消息格式端到端（stub 掉模型/LLM）
+### ② 灌库（RAG 知识库 / 知识图谱）
 
 ```bash
-python examples/agriculture/_e2e_stub_launcher.py
-# 期望: 两轮真实 gradio HTTP 提交（文本+图片 → 回传历史纯文本）
-#      均无 "Data incompatible with messages format" 错误、用户消息无重复
-```
-
-### ⑤ 回归确认框架升级无破坏
-```bash
-python examples/ch10/ch10_smoke_test.py      # 期望 14/14 通过
-python examples/ch12/ch12_quick_test.py      # 期望全通过
-# ch11 需在 env_rl 环境运行（与本平台改动无关）
+python scripts/seed_rag_knowledge.py   # RAG 向量库（需 Qdrant）
+python scripts/seed_rag_graph.py       # 知识图谱（需 Qdrant + Neo4j 均在 Docker）
 ```
 
 ## 外部系统与模型路径

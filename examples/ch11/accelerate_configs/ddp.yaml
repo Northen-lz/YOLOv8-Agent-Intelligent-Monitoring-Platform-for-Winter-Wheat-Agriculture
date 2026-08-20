@@ -1,9 +1,0 @@
-# DistributedDataParallel 多卡数据并行（文档 11.6.3）
-# 使用：accelerate launch --config_file ddp.yaml 脚本.py
-compute_environment: LOCAL_MACHINE
-distributed_type: MULTI_GPU
-num_machines: 1
-num_processes: 4
-machine_rank: 0
-mixed_precision: bf16
-use_cpu: false

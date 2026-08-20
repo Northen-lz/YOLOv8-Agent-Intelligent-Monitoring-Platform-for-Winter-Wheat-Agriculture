@@ -115,7 +115,7 @@ class AgricultureExpertAgent(ReActAgent):
         # ReActAgent 不像 SimpleAgent.add_tool 那样自动展开 MCPTool，需手动 expand 注册。
         # 1) 农业自定义 MCP（Memory 传输，进程内直连，零外部依赖）：
         #    把平台已有能力（模型/评估/数据集/知识库）协议化为 agri_* 工具。
-        # 2) 天气 MCP（stdio 拉起 ch10 现成服务器）：weather_get_weather_by_city，
+        # 2) 天气 MCP（stdio 拉起 tools/agriculture/weather_mcp_server.py）：weather_get_weather_by_city，
         #    需 wttr.in 联网；服务器启动失败/离线时展开跳过，不影响其他工具。
         try:
             self.agri_mcp = MCPTool(
@@ -130,7 +130,7 @@ class AgricultureExpertAgent(ReActAgent):
             print(f"⚠️ 农业 MCP 展开失败（不影响其他工具）: {e}")
         try:
             weather_script = os.path.join(
-                Config.PROJECT_ROOT, "examples", "ch10", "mcp", "ch10_mcp_weather_server.py")
+                Config.PROJECT_ROOT, "hello_agents", "tools", "agriculture", "weather_mcp_server.py")
             self.weather_mcp = MCPTool(
                 name="weather",
                 description="天气查询 MCP 服务器（城市实时天气/气温/湿度）",

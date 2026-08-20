@@ -56,7 +56,8 @@ HelloAgents/
 ├── outputs/                            #   运行产物（报告 / 标注图 / 会话历史 / 统计）
 ├── memory_data/                        #   SQLite 记忆库
 ├── tools/cpolar                        #   cpolar 公网隧道客户端（免安装版）
-├── examples/                           #   开发期章节配套示例与测试
+├── scripts/                            #   维护工具（RAG 灌库 / 图谱种子）
+├── docs/                               #   平台详细文档
 └── .env                                #   LLM API 配置（DeepSeek）
 ```
 
@@ -73,7 +74,6 @@ HelloAgents/
 | 5 | **云服务器部署方案** | 一键打包 tar.gz + 服务器初始化脚本 + systemd 自启 + 登录保护，手机随时可访问 | `deploy/` |
 | 6 | **手机访问** | 局域网 0.0.0.0 直连 + cpolar 公网隧道 | `run_ui.py` + `tools/cpolar` |
 | 7 | **知识库交付物** | 5 个领域 Markdown 文本（小麦生长/干旱/实验/检测/作者），即智能体 PM 岗位的「Markdown 交付物」 | `hello_agents/knowledge/` |
-| 8 | **验证体系** | 97 项离线 mock 测试 + 真实集成验证 + HTTP 端到端测试 | `examples/agriculture/` |
 
 ---
 
@@ -87,10 +87,10 @@ python run_ui.py
 python -m hello_agents.app
 
 # ③ 给 RAG 知识库灌库（首次或更新 knowledge/ 后）
-python examples/agriculture/seed_rag_knowledge.py
+python scripts/seed_rag_knowledge.py
 
-# ④ 跑智能体评估（BFCL/GAIA/数据生成）
-python examples/ch12/ch12_quick_test.py
+# ④ 灌知识图谱（可选，需 Qdrant + Neo4j 均在 Docker）
+python scripts/seed_rag_graph.py
 
 # ⑤ 云部署（详见 deploy/README.md）
 python deploy/pack_deploy.py
@@ -115,9 +115,9 @@ python deploy/pack_deploy.py
 | `outputs/` | 报告/标注图/会话/统计 | ⚠️ 运行数据，保留为演示 |
 | `memory_data/` | SQLite 记忆库 | ⚠️ 运行数据 |
 | `tools/cpolar/` | 公网隧道客户端（19M） | ⚠️ 可选（手机公网访问用） |
-| `examples/` | 章节示例与测试脚本 | ⚠️ 可清理（见删除清单） |
+| `scripts/` | RAG 灌库 / 图谱种子维护工具 | ❌ 保留 |
+| `docs/` | 平台详细文档 | ❌ 保留 |
 | 根目录 `app.py` | PDF 学习助手（独立） | ⚠️ 可选保留 |
-| 根目录杂项 | `main.py`/`test.py`/`image_view.jpg`/日志 | ✅ 可删（垃圾） |
 
 ---
 
