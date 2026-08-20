@@ -116,7 +116,7 @@ python deploy/pack_deploy.py
 | `memory_data/` | SQLite 记忆库 | ⚠️ 运行数据 |
 | `tools/cpolar/` | 公网隧道客户端（19M） | ⚠️ 可选（手机公网访问用） |
 | `scripts/` | RAG 灌库 / 图谱种子维护工具 | ❌ 保留 |
-| `docs/` | 平台详细文档 | ❌ 保留 |
+| `docs/` | 平台文档（agriculture-platform）+ **代码详解（CODE_GUIDE）** | ❌ 保留 |
 | 根目录 `app.py` | PDF 学习助手（独立） | ⚠️ 可选保留 |
 
 ---
