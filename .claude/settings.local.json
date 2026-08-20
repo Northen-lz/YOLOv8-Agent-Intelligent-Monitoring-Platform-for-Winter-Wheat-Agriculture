@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python app.py)",
+      "Bash(echo \"PID=$!\")",
+      "Bash(conda env *)",
+      "Read(//d/pyhon/ana/ana3/envs//**)",
+      "Bash(python examples/generate_ch9_architecture_png.py)",
+      "Bash(python -c \"from PIL import Image; im=Image.open\\('examples/ch9_architecture.png'\\); print\\('final:', im.size\\)\")",
+      "Bash(kill 1095)",
+      "Bash(python examples/ch11/ch11_dataset_loading.py)",
+      "Bash(python -c ' *)",
+      "Bash(timeout 90 python examples/agriculture/_e2e_stub_launcher.py)",
+      "Bash(python examples/agriculture/test_agents_mock.py)",
+      "Bash(python examples/agriculture/_e2e_stub_launcher.py)"
+    ]
+  }
+}

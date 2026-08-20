@@ -1,0 +1,22 @@
+{
+  "scores": [
+    {
+      "correctness": 5,
+      "clarity": 5,
+      "difficulty_match": 1,
+      "completeness": 5,
+      "feedback": "The problem is correct and clearly stated, but it is far too easy for an AIME problem, which typically requires multi-step reasoning and is aimed at advanced high school students.",
+      "average_score": 4.0
+    }
+  ],
+  "statistics": {
+    "avg_correctness": 5.0,
+    "avg_clarity": 5.0,
+    "avg_difficulty": 1.0,
+    "avg_completeness": 5.0,
+    "avg_overall": 4.0,
+    "pass_rate": 1.0,
+    "excellent_rate": 0.0,
+    "count": 1
+  }
+}

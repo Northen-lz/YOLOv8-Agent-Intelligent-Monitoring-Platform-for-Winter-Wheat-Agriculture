@@ -1,0 +1,3 @@
+{"question": "北京明天的天气怎么样？", "answer": [{"name": "get_weather", "arguments": {"city": "北京"}}]}
+{"question": "计算 5 的阶乘。", "answer": [{"name": "factorial", "arguments": {"n": 5}}]}
+{"question": "把一句话翻译成法语。", "answer": [{"name": "translate_text", "arguments": {"text": "", "target_language": "法语"}}]}

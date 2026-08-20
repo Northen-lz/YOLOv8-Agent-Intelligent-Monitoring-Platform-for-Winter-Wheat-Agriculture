@@ -1,0 +1,12 @@
+# DeepSpeed ZeRO-3：全参数分片（文档 11.6.4）
+# 最大显存节省，通信开销高
+compute_environment: LOCAL_MACHINE
+distributed_type: DEEPSPEED
+num_machines: 1
+num_processes: 4
+machine_rank: 0
+mixed_precision: bf16
+deepspeed_config:
+  zero_stage: 3
+  offload_optimizer_device: cpu
+  offload_param_device: cpu

@@ -1,0 +1,37 @@
+# YOLOv8 模型原理知识库
+
+## YOLO 系列简介
+YOLO（You Only Look Once）是一阶段目标检测算法，将目标检测视为回归问题，一次前向推理同时输出目标类别与边界框位置，兼具实时性与较高精度。从 YOLOv1 发展到 YOLOv8，网络结构、训练策略持续优化。YOLOv8 由 Ultralytics 于 2023 年 1 月发布（YOLOv5 的后继版本），对 YOLOX、YOLOv6、YOLOv7 与 PP-YOLOE 的思想做了工程化整合，核心贡献为 C2f 模块、anchor-free 解耦头、TAL 匹配与 DFL+CIoU/VFL 损失。
+
+## YOLOv8 核心结构
+- 骨干网络 Backbone：采用 CSPDarknet 改进结构，保留 CSP（跨阶段局部连接）与 SPPF 空间金字塔池化，将 YOLOv5 的 C3 模块替换为 C2f（Cross Stage Partial with 2 convolutions）模块。C2f 把输入分两路（一路直连、一路经 Bottleneck 块），并把所有中间 Bottleneck 输出（n+2 张特征图）拼接后再融合卷积（C3 只拼接 2 张），梯度流更丰富、特征复用更强、小目标检测更好。
+- 颈部 Neck：PAN-FPN 路径聚合网络（上采样去掉 1×1 卷积，融合采用 concat+C2f 而非 add），融合多尺度特征；输出三档融合尺度 P3(80×80)/P4(40×40)/P5(20×20)，分别对应小/中/大目标。
+- 检测头 Head：采用解耦头（Decoupled Head），分类与回归分支分离（分类分支输出 nc 通道 + Sigmoid；回归分支输出 4×reg_max 的 DFL logits，reg_max=16）；支持 anchor-free（无锚框）机制，直接预测目标中心点偏移与归一化宽高，省去 k-means 聚类锚框，减少超参数。
+- 正负样本分配：采用 TAL（Task-Aligned Assigner），按分类得分与 IoU 联合加权匹配动态分配正样本，替代 YOLOv5 的 MaxIOU，提升分类与回归的一致性。
+- 损失函数：分类用 VFL（Varifocal Loss，非对称加权强调正样本）；回归用 DFL（Distribution Focal Loss，把每个框坐标建模为 reg_max=16 个 bin 上的分布）+ CIoU Loss；已移除独立的目标置信度（objectness）损失。
+
+## 为什么 YOLOv8 适合植物/小麦检测
+- 小目标密集场景：田间小麦穗头数量多、尺寸小、相互遮挡，YOLOv8 的多尺度特征融合与 anchor-free 检测头对此类密集小目标表现良好。
+- 实时性要求：农业监测常需对田间图像/视频流实时处理，YOLOv8 在精度与速度间取得良好平衡，可部署在边缘设备。
+- 训练数据适配：使用 wheat500、GlobalWheat2020 等标注数据集微调后，可准确检测冬小麦穗头，为产量估测、长势分析提供基础。
+- 易部署：支持导出为 ONNX、TensorRT 等格式，跨平台推理便捷。
+
+## 模型推理流程
+输入 RGB 图像 → 图像缩放/归一化 → YOLO 前向推理 → 输出每个检测框的类别、置信度与边界框坐标（x1, y1, x2, y2）→ 通过置信度阈值（conf）过滤低质量框 → 非极大值抑制（NMS）去重重叠框 → 得到最终检测结果。
+
+## ONNX 部署
+ONNX（Open Neural Network Exchange）是开放的模型交换格式。将训练好的 YOLOv8 模型导出为 .onnx 后，可用 onnxruntime 在 CPU/GPU 上高效推理，无需完整深度学习框架。对图像分类模型（如冬小麦干旱分类），输入通常是归一化后的图像张量（如 NCHW 形状），输出为各类别的 logits 或概率。
+
+## 评估指标
+- mAP（mean Average Precision）：各类别 AP 的平均，衡量检测整体精度。
+- Precision/Recall：精确率与召回率，反映误检与漏检情况。
+- F1：精确率与召回率的调和平均。
+- 置信度与 IoU：置信度反映模型对框的把握程度，IoU 衡量预测框与真实框的重叠程度。
+
+## 检测后处理
+检测结果常包含：边界框坐标、类别、置信度。后处理可统计目标数量、平均置信度、目标密度分布等，为农业决策提供量化依据。
+
+## 参考来源（网页检索验证）
+- Ultralytics 官方架构文档：yolo-architecture.md（github.com/ultralytics/ultralytics）
+- YOLOv8 结构深度解读：akashAD98/yolov8_in_depth（github）
+- 中文社区讲解：《目标检测——YOLOv8（十四）》《完整讲解YOLOv8 算法》等
