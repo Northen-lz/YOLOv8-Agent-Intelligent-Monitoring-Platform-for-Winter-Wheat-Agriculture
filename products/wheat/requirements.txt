@@ -1,0 +1,32 @@
+# YOLOv8-Agent 小麦产品 —— 本机运行依赖（对齐 base 环境实测版本）
+# 通用框架 ha_framework 已 pip install -e ./framework，核心依赖自带；
+# 此文件装的是「产品 UI + 领域重模块」。云部署依赖同款见 deploy/requirements.txt。
+#
+# 关键兼容约束（本机实测，勿随意升级）：
+#   gradio 5.45.0 + starlette 0.47.3 + mcp 1.29.0 可正常 launch（starlette 必须 <0.48，
+#   mcp 会带入 1.3.x 破坏 gradio —— 见本仓库记忆）→ 显式钉 starlette==0.47.3
+#   qdrant-client 1.19.x 使用新 API（query_points/retrieve），勿降到 <1.19
+gradio==5.45.0
+gradio_client==1.13.0
+# 数据看板趋势图（gr.LinePlot/plotly）与 detection_log 时间序列（pandas）直接依赖
+pandas>=2.0
+plotly>=5.18
+starlette==0.47.3
+mcp==1.29.0
+openai==2.53.0
+qdrant-client==1.19.0
+neo4j>=5.14,<7
+numpy>=1.26,<3
+scikit-learn>=1.3
+scikit-image>=0.22
+opencv-python-headless>=4.8
+onnxruntime>=1.17
+python-docx>=1.0
+reportlab>=4.0
+Pillow>=10
+PyYAML>=6.0
+requests>=2.31
+python-dotenv>=1.0
+PyMuPDF>=1.23
+# 图片检测/干旱（外部 YOLO 权重仍走绝对路径 D:\pyhon\vscode-xiaomai）
+# torch+ultralytics 体积大，按需自行安装：pip install torch ultralytics

@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ha-framework"
+version = "1.0.0"
+description = "Hello-Agents 通用智能体框架（领域无关公共包）：Agent 推理范式 / 工具 / 记忆 / RAG / 上下文 / 协议 / RL / 评估"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "HelloAgents" }]
+keywords = ["agent", "llm", "rag", "memory", "mcp", "framework"]
+
+# 核心尽量轻量：仅保证 `import ha_framework` 与基础 Agent/LLM/记忆功能。
+# 重能力（向量库/RL/评估数据集/协议/MCP 等）全部为惰性 import，按需 `pip install "ha-framework[xxx]"`。
+dependencies = [
+    "openai",
+    "python-dotenv",
+    "requests",
+    "PyYAML",
+]
+
+[project.optional-dependencies]
+# 向量/图记忆 + 语义嵌入 + RAG 检索（Qdrant 离线时自动降级 SQLite/TFIDF，不装也能跑关键词检索）
+rag = [
+    "qdrant-client",
+    "neo4j",
+    "sentence-transformers",
+    "scikit-learn",
+]
+# 多格式文档解析（RAG 灌 docx/pdf/md 用）
+doc = [
+    "markitdown",
+    "pymupdf",
+    "Pillow",
+    "jieba",
+]
+# 通信协议 MCP/A2A/ANP
+protocols = [
+    "mcp",
+]
+# 强化学习训练（第十一章：SFT/GRPO）—— 重，建议独立 GPU 环境
+rl = [
+    "torch",
+    "transformers",
+    "trl",
+    "peft",
+    "datasets",
+    "accelerate",
+    "huggingface_hub",
+]
+# 评估数据拉取（第十二章 BFCL/GAIA 数据集）
+eval = [
+    "datasets",
+    "huggingface_hub",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ha_framework*"]
+
+[tool.setuptools.package-data]
+"ha_framework" = ["py.typed"]

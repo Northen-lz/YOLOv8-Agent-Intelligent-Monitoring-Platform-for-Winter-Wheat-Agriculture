@@ -3,21 +3,27 @@ __pycache__/
 *.pyc
 *.pyo
 
-# 密钥
+# 密钥（任意层级）
 .env
 
-# 大模型权重（3.9G，不入库）
+# 大模型权重（3.9G，不入库；框架/产品/任意层级）
 models/
 
-# 运行数据（保留在磁盘，不入版本控制）
+# 运行数据（保留在磁盘，不入版本控制；任意层级）
 outputs/
 memory_data/
 
-# 外部工具
-tools/cpolar/
+# 外部工具（cpolar 公网隧道客户端；任意层级）
+**/tools/cpolar/
 
-# 构建产物（可随时用 pack_deploy.py 重新生成）
-deploy/*.tar.gz
+# 构建产物（可随时用 products/wheat/deploy/pack_deploy.py 重新生成；任意层级）
+**/deploy/*.tar.gz
+
+# 私人材料（求职/简历/演示，不入库不推送）
+docs/interview/
+罗政*.pdf
+enterprise-ai-personal-anc-presentation.html
+langchain_demo/
 
 # 重复/临时
 result/
