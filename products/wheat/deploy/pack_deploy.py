@@ -32,7 +32,7 @@ TMP = os.path.join(tempfile.gettempdir(), "ha-pack-root")
 
 # 从产品根拷入打包根目录的文件/目录（服务器 sys.path 根）
 PROJECT_COPY = [
-    ("wheat", "wheat"),
+    (os.path.join(PRODUCT_ROOT, "wheat"), "wheat"),
     (os.path.join(PRODUCT_ROOT, "run_ui.py"), "run_ui.py"),
 ]
 # 框架源码（服务器直接用 sys.path 导入，无需 pip 安装）
