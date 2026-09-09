@@ -52,8 +52,3 @@ cd products/wheat && python -c "import wheat; from wheat.app import build_ui; bu
 # 旧包存档对照
 cd archive/hello_agents_v1_agri && python -c "import hello_agents; print(hello_agents.__file__)"
 ```
-
-## 个人/非项目内容（勿动）
-
-- `docs/interview/`、简历 `罗政….pdf`：私人求职材料。
-- `enterprise-ai-personal-anc-presentation.html`、`langchain_demo/`：演示/讲稿素材。
