@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents ANP 协议实现（Agent Network Protocol）
-对齐文档第十章 10.4
 
 文档说明：ANP 目前为概念性协议框架，这里做轻量的内存模拟：
 - ANPDiscovery   服务发现中心（注册 / 发现 / 能力匹配）

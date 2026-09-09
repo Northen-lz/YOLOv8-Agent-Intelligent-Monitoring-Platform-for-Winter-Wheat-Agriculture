@@ -27,3 +27,11 @@ langchain_demo/
 
 # 重复/临时
 result/
+
+# 个人材料与学习草稿（不入库不推送）
+claude-skills-notes/
+image*.png
+主方案*.txt
+产品构建*.txt
+框架技术整体汇总.txt
+products/wheat/docs/云部署排查手册.md

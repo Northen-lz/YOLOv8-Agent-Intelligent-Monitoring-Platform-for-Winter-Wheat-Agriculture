@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-工具注册管理（对齐文档第七章 7.5.1 ToolRegistry）
+工具注册管理
 
 支持两种注册方式：
 1. register_tool(Tool对象) - 复杂工具

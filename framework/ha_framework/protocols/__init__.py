@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents 通信协议模块
-对齐文档第十章 10.1.4
 
 三种协议：
 - MCP   (Model Context Protocol)   智能体与工具的标准通信

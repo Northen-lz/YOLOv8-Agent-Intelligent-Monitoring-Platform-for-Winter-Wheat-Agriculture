@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-第九章 长程智能体实战：代码库维护助手（文档 9.6.3 核心实现）
+长程智能体实战：代码库维护助手
 
 整合 ContextBuilder + NoteTool + TerminalTool + MemoryTool，
 实现跨会话的代码库维护任务管理：

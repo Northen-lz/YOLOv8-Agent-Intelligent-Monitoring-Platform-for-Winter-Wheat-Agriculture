@@ -10,7 +10,7 @@ HelloAgents/
 │   ├── README.md       #   如何用框架新建一个产品
 │   └── wheat/          #   YOLOv8-Agent 冬小麦智能监测平台
 ├── archive/            # 历史留档（旧 hello_agents 混合包完整快照 + CODE_GUIDE）
-├── docs/interview/     # 私人面试准备材料（不删不改）
+├── docs/interview/     # 
 ├── langchain_demo/     # LangChain 演示（面试演示，独立于框架）
 └── .env                # 共享密钥（LLM/Qdrant/Neo4j；不入库）
 ```

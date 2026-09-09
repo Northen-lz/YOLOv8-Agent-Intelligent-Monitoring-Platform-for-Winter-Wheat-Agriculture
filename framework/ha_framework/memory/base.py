@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents 记忆系统基础数据结构
-对齐文档第八章 8.2.4：MemoryItem / MemoryConfig / BaseMemory
-
-记忆系统四层架构的"基础设施层"（文档 PDF 页 232）：
+MemoryItem / MemoryConfig / BaseMemory：
 - MemoryItem   - 记忆数据结构（标准化记忆项）
 - MemoryConfig - 配置管理（系统参数设置）
 - BaseMemory   - 记忆基类（通用接口定义）

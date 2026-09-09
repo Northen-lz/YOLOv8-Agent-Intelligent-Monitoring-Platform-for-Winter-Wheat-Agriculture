@@ -3,7 +3,7 @@
 Hello-Agents
 消息系统
 
-负责定义Agent之间传递的信息格式（对齐文档第七章 7.3.1）
+负责定义Agent之间传递的信息格式
 - role 限定为 user / assistant / system / tool
 - 提供 to_dict() 转换为 OpenAI API 兼容格式
 """

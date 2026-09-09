@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-BFCL 一键评估工具（对齐文档第十二章 12.2.5 方式1）
+BFCL 一键评估工具
 
 统一入口（对齐参考 02）：
     bfcl_tool = BFCLEvaluationTool()

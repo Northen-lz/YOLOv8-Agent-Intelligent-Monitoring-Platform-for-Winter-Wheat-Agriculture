@@ -1,0 +1,5 @@
+# 爪案（petbrand）运行依赖 —— 与本机 base 环境既有包协同
+# 说明：通用框架 ha_framework 已 pip install -e ./framework 装入 base 环境，无需重复。
+# LLM 走 DeepSeek（仓库根 .env 提供），无需本地模型；知识问答零外部依赖关键词检索兜底。
+gradio==5.45.0
+starlette==0.47.3        # mcp 带入的 starlette>=0.48 会破坏 gradio launch，务必钉 <0.48

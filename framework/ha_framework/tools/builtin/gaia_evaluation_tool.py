@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-GAIA 一键评估工具（对齐文档第十二章 12.3.5 方式1）
+GAIA 一键评估工具
 
 统一入口（对齐参考 05）：
     gaia_tool = GAIAEvaluationTool()

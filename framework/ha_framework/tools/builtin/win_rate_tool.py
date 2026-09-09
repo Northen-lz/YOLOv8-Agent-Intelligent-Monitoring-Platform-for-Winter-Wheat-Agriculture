@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Win Rate 评估工具（对齐文档第十二章 12.4.4）
+Win Rate 评估工具
 
 统一入口（返回 JSON 字符串，对齐 RLTrainingTool 模式）：
     winrate_tool = WinRateTool()

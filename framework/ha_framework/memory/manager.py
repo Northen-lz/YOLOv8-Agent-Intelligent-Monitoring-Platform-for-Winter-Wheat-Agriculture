@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Hello-Agents 记忆管理器（MemoryManager）
-对齐文档第八章 8.2.4 MemoryManager
+记忆管理器（MemoryManager）
+MemoryManager
 
 职责（"关注点分离"）：
 - 统一调度四种记忆类型（working/episodic/semantic/perceptual）

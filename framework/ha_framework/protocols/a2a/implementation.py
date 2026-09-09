@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents A2A 协议实现（Agent-to-Agent Protocol）
-对齐文档第十章 10.3
 
 文档说明：A2A 现有实现大部分为 Sample Code，且 Python 实现较为繁琐，
 因此这里采用「模拟协议思想」的轻量自实现：

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Hello-Agents RAG 检索增强生成工具（RAGTool）
-对齐文档第八章 8.3.3 RAGTool
+Hello-Agents RAG 检索增强生成工具（RAGTool） RAGTool
 
 设计（"统一入口，分发处理"）：
 - execute(action, **kwargs) 通过 action 参数指定具体操作

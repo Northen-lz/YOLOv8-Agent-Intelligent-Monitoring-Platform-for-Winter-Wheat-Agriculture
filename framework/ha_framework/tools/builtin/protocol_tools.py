@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Hello-Agents 协议工具包装器
-对齐文档第十章 10.1.4「工具封装层」：MCPTool / A2ATool / ANPTool
+Hello-Agents 协议工具包装器「工具封装层」：MCPTool / A2ATool / ANPTool
 
 统一继承 BaseTool，提供一致的 run() 方法，让智能体以相同的方式使用三种协议：
 - MCPTool   访问 MCP 服务器工具（支持自动展开为独立工具）

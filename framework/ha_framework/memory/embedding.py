@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents 统一嵌入服务
-对齐文档第八章 8.2 嵌入服务层：DashScopeEmbedding / LocalTransformerEmbedding / TFIDFEmbedding
+嵌入服务层：DashScopeEmbedding / LocalTransformerEmbedding / TFIDFEmbedding
 
 用户决策：本地 sentence-transformers 首选，TFIDF 轻量兜底。
 统一接口（所有嵌入器）：

@@ -7,7 +7,7 @@ Hello-Agents 通用框架 · 配置管理模块（领域无关）
 不再放这里 —— 产品应在自己的包内继承本 Config 并补充产品常量
 （例：products/wheat/wheat/core/config.py）。
 
-对齐文档第八章 .env 配置：
+ .env 配置：
 - LLM 配置（LLM_API_KEY / LLM_BASE_URL / LLM_MODEL_ID）
 - Qdrant 向量数据库 / Neo4j 图数据库
 - Embedding 嵌入方案

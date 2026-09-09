@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents 结构化笔记工具（NoteTool）
-对齐文档第九章 9.4
 
 设计理念（文档 9.4.1）：
 - 以 Markdown 文件为载体，头部 YAML 前置元数据记录关键信息

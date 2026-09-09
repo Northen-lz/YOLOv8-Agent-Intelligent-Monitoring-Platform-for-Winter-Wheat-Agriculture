@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-Agent基类（对齐文档第七章 7.3.3）
+Agent基类
 - 支持外部传入 llm 实例与 tool_registry
 - 维护对话历史 self._history / self.messages
 - 提供 add_message / get_history / clear_history

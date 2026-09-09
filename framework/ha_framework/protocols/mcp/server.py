@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Hello-Agents MCP 服务器（MCPServer）
-对齐文档第十章 10.2.4 / 10.5.1
+Hello-Agents MCP 服务器（MCPServer）s
 
 基于已安装的 mcp SDK 内置 FastMCP（mcp.server.fastmcp.FastMCP）做薄封装，
 对外提供与文档一致的接口：

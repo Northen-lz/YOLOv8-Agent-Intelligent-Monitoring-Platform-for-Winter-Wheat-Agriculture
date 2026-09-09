@@ -1,0 +1,29 @@
+[Unit]
+Description=ZhaoAn petbrand (爪案 猫狗品牌全案策划台, Gradio UI)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/petbrand
+# 主配置（.env：LLM key / Qdrant / Neo4j / 嵌入方案；随部署包落到运行根）
+EnvironmentFile=/opt/petbrand/.env
+# UI 登录保护（由 server_setup.sh 生成 /etc/petbrand-ui.env）
+EnvironmentFile=/etc/petbrand-ui.env
+Environment=PETBRAND_UI_HOST=0.0.0.0
+# 单端口热切换：与小麦(hello-agents)共用 7865，同一时刻只跑一个，
+# 由 /opt/agent-switch.sh 保证互斥（不可与小麦同时启动，避免端口冲突）。
+Environment=PETBRAND_UI_PORT=7865
+Environment=PETBRAND_UI_INBROWSER=0
+# 数据根落产品目录（outputs/ cases decks memory_data 都在这）
+Environment=HA_DATA_ROOT=/opt/petbrand
+ExecStart=/opt/petbrand/venv/bin/python run_ui.py
+Restart=always
+RestartSec=5
+# Gradio 首次启动要加载 ha_framework + 各 Agent 模块
+TimeoutStartSec=180
+
+[Install]
+WantedBy=multi-user.target

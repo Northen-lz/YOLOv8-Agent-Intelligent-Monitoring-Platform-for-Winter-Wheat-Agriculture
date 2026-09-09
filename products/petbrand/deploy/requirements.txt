@@ -1,0 +1,16 @@
+# 爪案（petbrand）—— 服务器运行依赖（对齐本机 base 环境实测版本）
+# 只需框架 import-time 硬需求 + 爪案自身；不含 wheat 的 torch/opencv/ultralytics 等重件。
+# 关键兼容约束（本机/服务器实测）：
+#   gradio 5.45.0 + starlette 0.47.3 + mcp 1.29.0 组合可正常 launch（starlette 必须 <0.48；
+#   mcp 带入的新 starlette 会破坏 gradio launch）
+# LLM 走 DeepSeek（.env 提供），openai 库为 ha_framework.core.llm 顶层硬依赖。
+gradio==5.45.0
+gradio_client==1.13.0
+starlette==0.47.3
+mcp==1.29.0
+openai==2.53.0
+numpy>=1.26,<3
+PyYAML>=6.0
+requests>=2.31
+python-dotenv>=1.0
+python-docx>=1.0

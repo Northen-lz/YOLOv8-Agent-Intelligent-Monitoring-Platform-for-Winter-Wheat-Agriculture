@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents MCP 工具函数
-对齐文档第十章 10.1.4 protocols/mcp/utils.py（create_context / parse_context）
+protocols/mcp/utils.py（create_context / parse_context）
 
 - create_context(tools)    把 MCP 服务器工具列表转成给 LLM 的系统提示文本
 - parse_context(result)    把 MCP call_tool 返回的 content 块转成纯文本

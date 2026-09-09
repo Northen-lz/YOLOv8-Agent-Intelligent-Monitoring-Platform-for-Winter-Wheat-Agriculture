@@ -11,7 +11,7 @@ cd /d "%~dp0"
 REM ---- 1. 可选登录保护（公网暴露强烈建议开启）----
 REM 取消下面两行注释并改成自己的账号密码：
 REM set UI_AUTH_USER=admin
-REM set UI_AUTH_PASS=请改成强密码
+REM set UI_AUTH_PASS=请123456789
 
 REM ---- 2. 若已配置 cpolar 隧道，后台拉起（公网访问用）----
 set "CPOLAR=%~dp0tools\cpolar\bin"

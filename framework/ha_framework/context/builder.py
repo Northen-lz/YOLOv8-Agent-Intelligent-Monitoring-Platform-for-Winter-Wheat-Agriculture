@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents 上下文构建器（ContextBuilder）
-对齐文档第九章 9.3：GSSC (Gather-Select-Structure-Compress) 流水线
+GSSC (Gather-Select-Structure-Compress) 流水线
 
-设计动机（文档 9.3.1）：
+设计动机：
 1. 统一入口：将"获取-选择-结构化-压缩"抽象为可复用流水线，减少 Agent 重复模板代码
 2. 稳定形态：输出固定骨架的上下文模板，便于调试、A/B 测试与评估
 3. 预算守护：在 token 预算内尽量保留高价值信息，对超限上下文提供兜底压缩
 4. 最小规则：不引入来源/优先级等分类维度，统一以"相关性 + 新近性"分数选择
 
-输出分区模板（文档 9.3.1）：
+输出分区模板：
     [Role & Policies]  角色定位与行为准则
     [Task]             当前任务
     [State]            Agent 当前状态

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents 记忆工具（MemoryTool）
-对齐文档第八章 8.2.3 MemoryTool
+MemoryTool
 
 设计（"统一入口，分发处理"）：
 - execute(action, **kwargs) 通过 action 参数指定具体操作

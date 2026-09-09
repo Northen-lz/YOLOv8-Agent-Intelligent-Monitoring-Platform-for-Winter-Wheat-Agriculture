@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-SimpleAgent实现（对齐文档第七章 7.4.1）
+SimpleAgent实现
 
 支持：
 - 基础对话

@@ -3,10 +3,10 @@
 Hello-Agents
 
 LLM统一调用接口
-负责连接大语言模型，支持多提供商自动检测（对齐文档第七章 7.2）
+负责连接大语言模型，支持多提供商自动检测
 
 支持：
-- invoke(messages)  非流式调用，返回 str（第八章代码使用）
+- invoke(messages)  非流式调用，返回 str
 - chat(messages)    兼容旧接口，等价于 invoke
 - 多提供商自动检测：modelscope / openai / zhipu / ollama / vllm / auto
 """

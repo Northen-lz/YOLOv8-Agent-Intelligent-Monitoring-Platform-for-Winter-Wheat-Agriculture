@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Hello-Agents MCP 客户端（MCPClient）
-对齐文档第十章 10.2.2 / 10.2.3
 
 基于已安装的 mcp SDK 官方客户端 API 实现，支持 5 种传输方式（表 10.4）：
 - memory            内存传输（单元测试 / 内置演示服务器）
