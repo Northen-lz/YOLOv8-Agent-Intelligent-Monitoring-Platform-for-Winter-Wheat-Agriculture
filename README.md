@@ -52,3 +52,9 @@ cd products/wheat && python -c "import wheat; from wheat.app import build_ui; bu
 # 旧包存档对照
 cd archive/hello_agents_v1_agri && python -c "import hello_agents; print(hello_agents.__file__)"
 ```
+## 成果展示
+<img width="1882" height="895" alt="image" src="https://github.com/user-attachments/assets/9eecd237-c597-4d36-9aa0-b77b20c1e0c0" />
+<img width="1464" height="684" alt="image" src="https://github.com/user-attachments/assets/a40faa6c-be86-42a2-8b10-a2e45f25c2de" />
+
+## tips
+详细视觉模型在另一个项目
