@@ -28,6 +28,9 @@ langchain_demo/
 # 重复/临时
 result/
 
+# 已独立成库的项目（2026-09-16 迁出为独立仓库 xingji-travel-assistant）
+products/tripplanner/
+
 # 个人材料与学习草稿（不入库不推送）
 claude-skills-notes/
 image*.png
